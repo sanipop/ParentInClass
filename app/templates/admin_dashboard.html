@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Administrator Dashboard</h2>
+
+{% if students %}
+    <ul>
+    {% for student in students %}
+        <li>{{ student.name }}: {{ student.summary }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No student data available.</p>
+{% endif %}
+
+{% endblock %}
