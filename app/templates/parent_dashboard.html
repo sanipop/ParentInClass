@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Parent Dashboard</h2>
+
+{% if children %}
+    <ul>
+    {% for child in children %}
+        <li>{{ child.name }}: {{ child.performance_summary }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No children data available.</p>
+{% endif %}
+
+{% endblock %}
