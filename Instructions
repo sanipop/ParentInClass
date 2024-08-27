@@ -1,0 +1,42 @@
+#using Ubuntu
+
+
+
+#install these
+pip install Flask
+pip install Flask-SQLAlchemy
+pip install Flask-Migratepip install Flask-Bootstrap
+pip install Flask-WTF
+pip install Flask-Login
+pip install Flask-Script
+pip install Werkzeug
+
+
+
+#Building the initialization file and the run file
+#Run
+
+
+
+export FLASK_APP=run.py
+
+export FLASK_APP=run.py
+
+#run
+python3
+>>from app import db
+>>db.create_all()
+>>exit()
+
+Verify the Database
+If you're using SQLite, a site.db file should appear in your project directory after running these commands.
+
+
+#if change is made on db
+
+pip install Flask-Migrate
+flask db init
+flask db migrate -m "Description of changes"
+flask db upgrade
+
+
