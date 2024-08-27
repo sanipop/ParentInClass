@@ -110,3 +110,15 @@ def add_student():
         flash('Student added successfully!', 'success')
         return redirect(url_for('main.admin_dashboard'))
     return render_template('add_student.html', title='Add Student', form=form)
+
+@main.route('/mark_attendance', methods=['GET', 'POST'])
+def mark_attendance():
+    form = MarkAttendanceForm()
+    form.child_name.choices = [(child.id, child.child_name) for child in ChildRecord.query.all()]
+    if form.validate_on_submit():
+        student = ChildRecord.query.filter_by(id=form.child_name.data).first()
+        student.attendance = form.attendance.data
+        db.session.commit()
+        flash('Attendance marked successfully!', 'success')
+        return redirect(url_for('main.admin_dashboard'))
+    return render_template('mark_attendance.html', title='Mark Attendance', form=form)
