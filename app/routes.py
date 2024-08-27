@@ -99,3 +99,14 @@ def register_admin():
     return render_template('register_admin.html', title='Register as Administrator', form=form)
 
 
+#The Admin DashBoard functions
+@main.route('/add_student', methods=['GET', 'POST'])
+def add_student():
+    form = AddStudentForm()
+    if form.validate_on_submit():
+        student = ChildRecord(child_name=form.child_name.data)
+        db.session.add(student)
+        db.session.commit()
+        flash('Student added successfully!', 'success')
+        return redirect(url_for('main.admin_dashboard'))
+    return render_template('add_student.html', title='Add Student', form=form)
