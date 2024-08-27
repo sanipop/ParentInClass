@@ -32,6 +32,7 @@ def parent_dashboard():
         return redirect(url_for('main.index'))
     return render_template('parent_dashboard.html')
 
+
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -79,6 +80,7 @@ def register_parent():
     
     return render_template('register_parent.html', title='Register as Parent', form=form)
 
+
 @main.route('/register_admin', methods=['GET', 'POST'])
 def register_admin():
     form = AdminRegistrationForm()
@@ -97,6 +99,7 @@ def register_admin():
         flash('Administrator account created successfully!', 'success')
         return redirect(url_for('main.index'))
     return render_template('register_admin.html', title='Register as Administrator', form=form)
+
 
 
 #The Admin DashBoard functions
