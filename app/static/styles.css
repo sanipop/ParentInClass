@@ -1,0 +1,90 @@
+body.dark-theme {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+}
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left, .nav-right {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-left a, .nav-right a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+}
+
+.content {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #ccc;
+}
+
+.colorful-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.shape1 {
+    width: 150px;
+    height: 150px;
+    background-color: #ff6347;
+    top: 10%;
+    left: 5%;
+}
+
+.shape2 {
+    width: 200px;
+    height: 200px;
+    background-color: #4682b4;
+    top: 50%;
+    right: 10%;
+}
+
+.shape3 {
+    width: 100px;
+    height: 100px;
+    background-color: #daa520;
+    bottom: 20%;
+    left: 20%;
+}
