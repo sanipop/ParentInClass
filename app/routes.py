@@ -31,3 +31,19 @@ def parent_dashboard():
         flash('Unauthorized access!', 'danger')
         return redirect(url_for('main.index'))
     return render_template('parent_dashboard.html')
+
+@main.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and check_password_hash(user.password_hash, form.password.data):
+            login_user(user)
+            flash('Login successful!', 'success')
+            if user.role == 'admin':
+                return redirect(url_for('main.admin_dashboard'))
+            elif user.role == 'parent':
+                return redirect(url_for('main.parent_dashboard'))
+        else:
+            flash('Login unsuccessful. Please check your username and password.', 'danger')
+    return render_template('login.html', title='Login', form=form)
