@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Welcome to Parent in Class</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to ParentInClass</h1>
+
+<p><a href="{{ url_for('main.login') }}">Login</a></p>
+<p><a href="{{ url_for('main.register_admin') }}">Register as Administrator</a></p>
+<p><a href="{{ url_for('main.register_parent') }}">Register as Parent</a></p>
+{% endblock %}
