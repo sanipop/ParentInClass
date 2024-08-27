@@ -1,16 +1,152 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Dashboard</title>
+    <style>
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-{% block content %}
-<h2>Administrator Dashboard</h2>
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-{% if students %}
-    <ul>
-    {% for student in students %}
-        <li>{{ student.name }}: {{ student.summary }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No student data available.</p>
-{% endif %}
+.nav-left, .nav-right {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
 
-{% endblock %}
+.nav-left a, .nav-right a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #fff; /* Thin line perimeter */
+    border-radius: 5px;
+    background-color: transparent; /* Hollow effect */
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-left a:hover, .nav-right a:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+.container {
+    padding: 20px;
+}
+
+.content {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dashboard-links a {
+    padding: 15px;
+    border: 2px solid #4CAF50; /* Thin line perimeter */
+    border-radius: 8px;
+    background-color: transparent; /* Hollow effect */
+    color: #4CAF50; /* Text color matching the border */
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard-links a:hover {
+    background-color: #4CAF50; /* Hover background color */
+    color: #fff; /* Hover text color */
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #ccc;
+}
+
+.colorful-shape {
+    position: absolute;
+    opacity: 0.5;
+    border: 2px solid;
+}
+
+.shape1 {
+    width: 100px; /* Smaller size */
+    height: 100px; /* Square shape */
+    border-color: #ff6347; /* Tomato color */
+    top: 10%;
+    left: 5%;
+}
+
+.shape2 {
+    width: 150px; /* Smaller size */
+    height: 150px; /* Square shape */
+    border-color: #4682b4; /* SteelBlue color */
+    top: 50%;
+    right: 10%;
+}
+
+.shape3 {
+    width: 75px; /* Smaller size */
+    height: 75px; /* Square shape */
+    border-color: #daa520; /* GoldenRod color */
+    bottom: 20%;
+    left: 20%;
+}
+
+    </style>
+</head>
+<body class="dark-theme">
+    <nav>
+        <div class="nav-left">
+            <a href="{{ url_for('main.parent_dashboard') }}">Home</a>
+            <!-- Add other navigation links here -->
+        </div>
+        <div class="nav-right">
+            <a href="{{ url_for('main.logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            <h1>Admin Dashboard</h1>
+            <div class="dashboard-links">
+                <a href="{{ url_for('main.add_student') }}">Add Student</a>
+                <a href="{{ url_for('main.mark_attendance') }}">Mark Attendance</a>
+                <a href="{{ url_for('main.add_test') }}">Add Test</a>
+                <a href="{{ url_for('main.add_exam') }}">Add Exam</a>
+                <a href="{{ url_for('main.add_classwork') }}">Add Classwork</a>
+                <a href="{{ url_for('main.add_homework') }}">Add Homework</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Parent-In-Class
+    </footer>
+
+    <div class="colorful-shape shape1"></div>
+    <div class="colorful-shape shape2"></div>
+    <div class="colorful-shape shape3"></div>
+</body>
+</html>
