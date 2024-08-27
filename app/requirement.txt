@@ -1,4 +1,3 @@
-sk
 Flask-SQLAlchemy
 Flask-Login
 Flask-Bootstrap
