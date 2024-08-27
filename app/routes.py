@@ -146,3 +146,15 @@ def add_exam():
         flash('Exam score added successfully!', 'success')
         return redirect(url_for('main.admin_dashboard'))
     return render_template('add_exam.html', title='Add Exam', form=form)
+
+@main.route('/add_classwork', methods=['GET', 'POST'])
+def add_classwork():
+    form = AddClassworkForm()
+    form.child_name.choices = [(child.id, child.child_name) for child in ChildRecord.query.all()]
+    if form.validate_on_submit():
+        student = ChildRecord.query.filter_by(id=form.child_name.data).first()
+        student.classwork_score = form.classwork_score.data
+        db.session.commit()
+        flash('Classwork score added successfully!', 'success')
+        return redirect(url_for('main.admin_dashboard'))
+    return render_template('add_classwork.html', title='Add Classwork', form=form)
