@@ -1,0 +1,12 @@
+{% extends "admin_base.html" %}
+{% block title %}Add Classwork Score{% endblock %}
+{% block content %}
+<div class="colorful-shape shape2"></div>
+<h2>Add Classwork Score</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.child_name.label }} {{ form.child_name() }}
+    {{ form.classwork_score.label }} {{ form.classwork_score() }}
+    {{ form.submit() }}
+</form>
+{% endblock %}
