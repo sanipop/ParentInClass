@@ -122,3 +122,15 @@ def mark_attendance():
         flash('Attendance marked successfully!', 'success')
         return redirect(url_for('main.admin_dashboard'))
     return render_template('mark_attendance.html', title='Mark Attendance', form=form)
+
+@main.route('/add_test', methods=['GET', 'POST'])
+def add_test():
+    form = AddTestForm()
+    form.child_name.choices = [(child.id, child.child_name) for child in ChildRecord.query.all()]
+    if form.validate_on_submit():
+        student = ChildRecord.query.filter_by(id=form.child_name.data).first()
+        student.test_score = form.test_score.data
+        db.session.commit()
+        flash('Test score added successfully!', 'success')
+        return redirect(url_for('main.admin_dashboard'))
+    return render_template('add_test.html', title='Add Test', form=form)
