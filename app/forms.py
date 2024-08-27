@@ -13,6 +13,8 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
+
+
 #forms for Admin Function
 class AddStudentForm(FlaskForm):
     child_name = StringField('Child Name', validators=[DataRequired()])
