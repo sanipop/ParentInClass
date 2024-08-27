@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     # Define the relationship
     children = db.relationship('ChildRecord', backref='parent', lazy=True)
     
+
     def __repr__(self):
         return f'<User {self.username}>'
 
