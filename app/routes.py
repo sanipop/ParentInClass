@@ -134,3 +134,15 @@ def add_test():
         flash('Test score added successfully!', 'success')
         return redirect(url_for('main.admin_dashboard'))
     return render_template('add_test.html', title='Add Test', form=form)
+
+@main.route('/add_exam', methods=['GET', 'POST'])
+def add_exam():
+    form = AddExamForm()
+    form.child_name.choices = [(child.id, child.child_name) for child in ChildRecord.query.all()]
+    if form.validate_on_submit():
+        student = ChildRecord.query.filter_by(id=form.child_name.data).first()
+        student.exam_score = form.exam_score.data
+        db.session.commit()
+        flash('Exam score added successfully!', 'success')
+        return redirect(url_for('main.admin_dashboard'))
+    return render_template('add_exam.html', title='Add Exam', form=form)
