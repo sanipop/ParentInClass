@@ -23,3 +23,11 @@ def admin_dashboard():
         flash('Unauthorized access!', 'danger')
         return redirect(url_for('main.index'))
     return render_template('admin_dashboard.html')
+
+@main.route('/parent_dashboard')
+@login_required
+def parent_dashboard():
+    if current_user.role != 'parent':
+        flash('Unauthorized access!', 'danger')
+        return redirect(url_for('main.index'))
+    return render_template('parent_dashboard.html')
