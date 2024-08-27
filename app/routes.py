@@ -47,3 +47,36 @@ def login():
         else:
             flash('Login unsuccessful. Please check your username and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+@main.route('/register_parent', methods=['GET', 'POST'])
+def register_parent():
+    form = ParentRegistrationForm()
+    
+    # Populate the child_name choices dynamically from ChildRecord
+    form.child_name.choices = [(child.id, child.child_name) for child in ChildRecord.query.all()]
+    
+    if form.validate_on_submit():
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash('Email address already in use. Please choose a different one.', 'danger')
+            return redirect(url_for('main.register_parent'))        
+
+        # Create a new Parent instance
+        hashed_password = generate_password_hash(form.password.data, method='pbkdf2:sha256')
+        parent = User(username=form.name.data, email=form.email.data, password_hash=hashed_password, role='parent')
+        
+        # Associate the selected child with the parent
+        selected_child = ChildRecord.query.get(form.child_name.data)
+        selected_child.parent_id = parent.id  # Set the parent_id in ChildRecord
+        
+        # Add and commit to the database
+        db.session.add(parent)
+        db.session.add(selected_child)  # Ensure the child's parent_id is committed
+        db.session.commit()
+        
+        flash('Parent account created successfully!', 'success')
+        return redirect(url_for('main.index'))
+    
+    return render_template('register_parent.html', title='Register as Parent', form=form)
+
+
