@@ -79,4 +79,23 @@ def register_parent():
     
     return render_template('register_parent.html', title='Register as Parent', form=form)
 
+@main.route('/register_admin', methods=['GET', 'POST'])
+def register_admin():
+    form = AdminRegistrationForm()
+    if form.validate_on_submit():
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash('Email address already in use. Please choose a different one.', 'danger')
+            return redirect(url_for('main.register_admin'))        
+        # Add the admin registration logic here
+        # Create a new Admin instance
+        hashed_password = generate_password_hash(form.password.data, method='pbkdf2:sha256')
+        admin = User(username=form.name.data, email=form.email.data, password_hash=hashed_password, role='admin')
+        # Add and commit to the database
+        db.session.add(admin)
+        db.session.commit()
+        flash('Administrator account created successfully!', 'success')
+        return redirect(url_for('main.index'))
+    return render_template('register_admin.html', title='Register as Administrator', form=form)
+
 
