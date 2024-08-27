@@ -1,0 +1,12 @@
+{% extends "admin_base.html" %}
+{% block title %}Mark Attendance{% endblock %}
+{% block content %}
+<div class="colorful-shape shape2"></div>
+<h2>Mark Attendance</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.child_name.label }} {{ form.child_name() }}
+    {{ form.attendance.label }} {{ form.attendance() }}
+    {{ form.submit() }}
+</form>
+{% endblock %}
