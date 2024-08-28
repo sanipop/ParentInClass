@@ -5,7 +5,9 @@
 #install these
 pip install Flask
 pip install Flask-SQLAlchemy
-pip install Flask-Migratepip install Flask-Bootstrap
+pip install Flask-Migrate
+pip install email-validator
+pip install Flask-Bootstrap
 pip install Flask-WTF
 pip install Flask-Login
 pip install Flask-Script
